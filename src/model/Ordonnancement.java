@@ -1,3 +1,4 @@
+package model;
 
 public class Ordonnancement {
 	protected int[] lesTaches;

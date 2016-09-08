@@ -1,3 +1,7 @@
+package model;
+
+import java.util.Arrays;
+
 
 public class SMTWTP {
 	protected int n; //nombre de jobs
@@ -43,6 +47,13 @@ public class SMTWTP {
 		}
 		
 		return cost;
+	}
+
+
+	@Override
+	public String toString() {
+		return "SMTWTP [n=" + n + ", p=" + Arrays.toString(p) + ", d="
+				+ Arrays.toString(d) + ", w=" + Arrays.toString(w) + "]";
 	}
 	
 	
