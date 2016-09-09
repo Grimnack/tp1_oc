@@ -10,6 +10,9 @@ import java.util.Scanner;
 public class Main {
 	protected List<SMTWTP> lesInstances = new ArrayList<SMTWTP>();
 
+	public List<SMTWTP> getInstances() {
+		return this.lesInstances ;
+	}
 	
 	@Override
 	public String toString() {
@@ -19,24 +22,12 @@ public class Main {
 		}
 		return "Main = \n" + chaine ;
 	}
-
-	/**
-	 * ajoute le contenu d'une liste à un tableau
-	 * @param liste
-	 * @param tableau
-	 * @param numLigne
-	 */
-	public void addListToArray(List<Integer> liste, int[] tableau,int numLigne){
-		int cpt = 0;
-		for (Integer i : liste) {
-			tableau[cpt + numLigne*20] = i.intValue() ;
-			cpt++;
-		}
-	}
 	
 	/**
 	 * lit un fichier et ajoute les instances à la liste
-	 * @param pathname
+	 * Pour le moment sans prise de tête ne lit que les instances de taille 100
+	 * mais sera facilement modifiable
+	 * @param pathname l'adresse du fichier.
 	 */
 	public void lecture(String pathname){
 		try {
@@ -55,15 +46,11 @@ public class Main {
 			while(scanner.hasNextInt()){
 				if (cpt==300) {
 					cpt = 0 ;
-					System.out.println(p);
-					System.out.println(d);
-					System.out.println(w);
 					this.lesInstances.add(new SMTWTP(100, p, d, w));
 					p = new int[100] ;
 					w = new int[100] ;
 					d = new int[100] ;
 				}
-				System.out.println(cpt);
 				if (cpt<100) {
 					p[cpt] = scanner.nextInt() ;
 				}else if (cpt>=100 && cpt<200){
