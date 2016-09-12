@@ -163,7 +163,7 @@ public class SMTWTP {
 		}
 		
 		
-		return lesJobs ;
+		return resultat ;
 	}
 	
 }
