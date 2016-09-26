@@ -25,6 +25,7 @@ public class VoisinageContigu implements Voisinage{
 	@Override
 	public Voisinage init(ArrayList<Integer> solutionInitiale) {
 		this.solution = solutionInitiale ;
+		this.i = 0;
 		return this;
 	}
 

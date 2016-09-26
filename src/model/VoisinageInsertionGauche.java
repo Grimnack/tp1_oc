@@ -2,23 +2,21 @@ package model;
 
 import java.util.ArrayList;
 
-public class VoisinageSwap implements Voisinage {
-	
-	protected int i = 0;
-	protected int j = 1;
+public class VoisinageInsertionGauche implements Voisinage {
 	protected ArrayList<Integer> solution ;
-	protected int tailleSolution ;
+	protected int i=0;
+	protected int j=1;
+
 	@Override
 	public boolean hasnext() {
-		return (this.j<this.tailleSolution-1 || this.i<this.tailleSolution-2);
+		return this.i + 1 < this.j || this.j + 1 < this.solution.size();
 	}
 
 	@Override
 	public ArrayList<Integer> next() {
 		ArrayList<Integer> sortie = (ArrayList<Integer>) this.solution.clone();
-		Integer tmp = sortie.get(i);
-		sortie.set(i, sortie.get(j));
-		sortie.set(j,tmp) ;
+		Integer pick = sortie.remove(this.i) ;
+		sortie.add(this.j, pick);
 		if( this.i + 1 < this.j) { 
 			this.i++;
 		}else{
@@ -30,12 +28,11 @@ public class VoisinageSwap implements Voisinage {
 
 	@Override
 	public Voisinage init(ArrayList<Integer> solutionInitiale) {
-		// TODO Auto-generated method stub
 		this.solution = solutionInitiale ;
-		this.tailleSolution = solutionInitiale.size();
-		this.i=0;
-		this.j=1;
+		this.i = 0;
+		this.j = 1;
 		return this;
+
 	}
 
 }

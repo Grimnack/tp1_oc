@@ -112,11 +112,7 @@ public class SMTWTP {
 				}else if (d[indice1]<d[indice2]){
 					return -1;
 				}else{
-					if (rand.nextBoolean()) {
-						return 1 ;
-					} else {
-						return -1 ;
-					}
+					return 0;
 				}
 			}
 		});
@@ -148,11 +144,7 @@ public class SMTWTP {
 					}else if (mdd[indice1]>mdd[indice2]){
 						return 1 ;
 					}else{
-						if(rand.nextBoolean()){
-							return -1;
-						}else{
-							return 1 ;
-						}
+						return 0;
 					}
 				}
 			});
