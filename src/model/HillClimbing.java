@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class HillClimbing {
+public class HillClimbing implements LocalSearch{
 	protected SMTWTP probleme ;
 	protected boolean first ;
 	protected Voisinage voisinage;
@@ -22,6 +22,7 @@ public class HillClimbing {
 		this.voisinage = voisinage.init(this.solutionActuelle) ;
 		this.evalActuelle = this.probleme.eval(this.solutionActuelle);
 	}
+	
 	
 	public ArrayList<Integer> run(){
 		boolean peutAvancer = true ;
@@ -52,6 +53,13 @@ public class HillClimbing {
 			}
 		}
 		return trouve ;
+	}
+
+
+	@Override
+	public void setSolutionInitiale(ArrayList<Integer> solutionInitiale) {
+		this.solutionActuelle = solutionInitiale ;
+		
 	}
 	
 	

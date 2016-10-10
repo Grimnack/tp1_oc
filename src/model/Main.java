@@ -38,6 +38,7 @@ public class Main {
 			if (file.canRead()) {
 				System.out.println("on peut le lire");
 			}
+			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(file);
 			int[] p = new int[100] ;
 			int[] w = new int[100] ;

@@ -106,7 +106,6 @@ public class SMTWTP {
 		Collections.sort(lesJobs, new Comparator<Integer>(){
 			@Override
 			public int compare(Integer indice1, Integer indice2){
-				Random rand = new Random() ;
 				if (d[indice1]>d[indice2]) {
 					return 1 ;
 				}else if (d[indice1]<d[indice2]){
@@ -138,7 +137,6 @@ public class SMTWTP {
 			Collections.sort(lesJobs, new Comparator<Integer>(){
 				@Override
 				public int compare(Integer indice1,Integer indice2){
-					Random rand = new Random() ;
 					if(mdd[indice1]<mdd[indice2]){
 						return -1;
 					}else if (mdd[indice1]>mdd[indice2]){

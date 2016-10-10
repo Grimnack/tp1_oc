@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class VND {
+public class VND implements LocalSearch {
 	protected SMTWTP probleme;
 	protected ArrayList<Voisinage> lesVoisinages;
 	protected boolean first;
@@ -23,6 +23,14 @@ public class VND {
 		}
 		this.evalActuelle = this.probleme.eval(this.solutionActuelle);
 	}
+	
+
+	@Override
+	public void setSolutionInitiale(ArrayList<Integer> solutionInitiale) {
+		this.solutionActuelle = solutionInitiale ;
+		
+	}
+	
 	
 	public boolean choose(int indexVoisinage){
 		boolean trouve = false;

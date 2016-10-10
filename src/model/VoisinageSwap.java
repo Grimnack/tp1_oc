@@ -15,6 +15,7 @@ public class VoisinageSwap implements Voisinage {
 
 	@Override
 	public ArrayList<Integer> next() {
+		@SuppressWarnings("unchecked")
 		ArrayList<Integer> sortie = (ArrayList<Integer>) this.solution.clone();
 		Integer tmp = sortie.get(i);
 		sortie.set(i, sortie.get(j));

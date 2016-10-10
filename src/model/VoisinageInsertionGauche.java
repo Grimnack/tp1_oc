@@ -14,6 +14,7 @@ public class VoisinageInsertionGauche implements Voisinage {
 
 	@Override
 	public ArrayList<Integer> next() {
+		@SuppressWarnings("unchecked")
 		ArrayList<Integer> sortie = (ArrayList<Integer>) this.solution.clone();
 		Integer pick = sortie.remove(this.i) ;
 		sortie.add(this.j, pick);
