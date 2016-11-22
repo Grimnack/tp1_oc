@@ -28,6 +28,7 @@ public class HillClimbing implements LocalSearch{
 		boolean peutAvancer = true ;
 		while(peutAvancer){
 			peutAvancer = this.choose();
+			this.voisinage = voisinage.init(this.solutionActuelle) ;
 		}
 		return this.solutionActuelle;
 	}
