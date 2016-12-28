@@ -5,9 +5,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import model.Accepteur;
 import model.HillClimbing;
+import model.ILS;
+import model.LocalSearch;
 import model.Main;
+import model.OnlyBest;
+import model.Perturbateur;
 import model.PipedVND;
+import model.RandSwap;
 import model.SMTWTP;
 import model.VND;
 import model.Voisinage;
@@ -279,6 +285,52 @@ public class StatGen {
 		
 	}
 	
+	public void genereStatILS(){
+		Main main = new Main() ;
+		main.lecture("src/test/wt100.txt") ;
+		ArrayList<Voisinage> lesVoisinages = new ArrayList<Voisinage>() ;
+		lesVoisinages.add(new VoisinageContigu());
+		lesVoisinages.add(new VoisinageInsertionGauche()) ;
+		lesVoisinages.add(new VoisinageSwap()) ;
+		String voisin = "ech-ins-swap" ;
+		Accepteur accepteur = new OnlyBest() ;
+		Perturbateur perturbateur = new RandSwap();
+		try {
+			for (String selecteur : this.select) {
+				if(selecteur == "first") {
+					this.first = true ;
+				}else{
+					this.first = false ;
+				}
+				for(String init : this.starters){
+					File f = new File("ilsVND_"+selecteur+"_"+voisin+"_"+init+".stat");
+					FileWriter fw = new FileWriter(f) ;
+					for(SMTWTP instance : main.getInstances()) {
+						ArrayList<Integer> lesEvals = new ArrayList<Integer>() ;
+						ArrayList<Integer> lesTemps = new ArrayList<Integer>() ;
+						for(int i = 0; i < 1;i++){
+							long startTime = System.currentTimeMillis() ;
+							LocalSearch ls = new VND(instance, lesVoisinages, first, init) ;
+							ILS ils = new ILS(instance, true, perturbateur, accepteur, ls);
+							ArrayList<Integer> solution = ils.run();
+							long estimatedTime = System.currentTimeMillis() - startTime ;
+							lesEvals.add(instance.eval(solution)) ;
+							lesTemps.add((int) estimatedTime) ;
+						}
+						fw.write(String.valueOf(this.mean(lesEvals)) + ";" + String.valueOf(this.mean(lesTemps))+"\n");
+					}
+					fw.close();
+				}
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	
 	
 	public static void main(String[] args){
 		StatGen main = new StatGen();
@@ -288,6 +340,7 @@ public class StatGen {
 //		main.genereStatHillClimbing();
 //		main.genereStatVND() ;
 		main.genereStatPipedVND();
+		main.genereStatILS();
 		System.out.println("fini");
 	}
 	
