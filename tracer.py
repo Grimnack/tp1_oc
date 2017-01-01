@@ -90,7 +90,18 @@ def traceTableauDeviation(algo,variantes,init) :
 
 # traceTableauDeviation("hc",["insert","simple","swap"],["edd","mdd","rnd"])
 # traceTableauDeviation("ilsVND",["ech-ins-swap"],["edd","mdd","rnd"])
-traceTableauDeviation("ils2optVND",["ech-ins-swap"],["edd","mdd","rnd"])
+# traceTableauDeviation("ils2optVND",["ech-ins-swap"],["edd","mdd","rnd"])
 
-def vitesseMoyenne(algo,variantes,init) :
-    pass
+def vitesseMoyenne(pathname) :
+    (lesEvals,lesTemps) = lecture(pathname)
+    somme = 0
+    for temps in lesTemps :
+        somme+= temps
+    return somme/len(lesTemps)
+
+print(vitesseMoyenne("hc_best_swap_edd.stat"))
+print(vitesseMoyenne("vnd_best_ech-ins-swap_edd.stat"))
+print(vitesseMoyenne("pvnd_best_ech-ins-swap_edd.stat"))
+print(vitesseMoyenne("ilsVND_best_ech-ins-swap_edd.stat"))
+print(vitesseMoyenne("ils2optVND_best_ech-ins-swap_edd.stat"))
+
